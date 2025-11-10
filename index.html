@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Red Team / Blue Team Chat</title>
+
+    <!-- Foglio di stile del widget n8n -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@n8n/chat/dist/style.css"
+    />
+
+    <!-- Stile personalizzato Red Team / Blue Team -->
+    <style>
+        body {
+            margin: 0;
+            font-family: Consolas, monospace;
+            background: #0a0f1f;
+            color: #e0e0e0;
+        }
+
+        header {
+            padding: 20px;
+            background: linear-gradient(to right, #a60000, #0046ff);
+            color: white;
+            text-align: center;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .container {
+            padding: 40px;
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .description {
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+            color: #c7c7c7;
+        }
+
+        /* ---------- Custom CSS per n8n chat widget ----------- */
+
+        /* Colori principali */
+        :root {
+            --chat--color-primary: #ff0033 !important;    /* Red Team */
+            --chat--color-secondary: #0066ff !important;  /* Blue Team */
+            --chat--window--border-radius: 12px !important;
+            --chat--window--box-shadow: 0 0 20px rgba(0, 0, 0, 0.5) !important;
+        }
+
+        /* Header della chat */
+        .n8n-chat-header {
+            background: linear-gradient(to right, #a60000, #003bbb) !important;
+            color: white !important;
+        }
+
+        /* Messaggi bot */
+        .n8n-chat-message.bot {
+            background: rgba(0, 70, 255, 0.1) !important;
+            border-left: 3px solid #0066ff !important;
+        }
+
+        /* Messaggi utente */
+        .n8n-chat-message.user {
+            background: rgba(255, 0, 51, 0.1) !important;
+            border-right: 3px solid #ff0033 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <header>Red Team / Blue Team Ops Console</header>
+
+    <div class="container">
+        <p class="description">
+            Benvenuto nella console interattiva.  
+            Usa la chat qui sotto per interagire con il tuo agente AI orchestrato tramite n8n.
+        </p>
+
+        <!-- Qui verrà montato il widget -->
+        <div id="n8n-chat"></div>
+    </div>
+
+    <!-- Script del widget n8n -->
+    <script type="module">
+        import { createChat } from "https://unpkg.com/@n8n/chat/dist/chat.js";
+
+        createChat({
+            webhookUrl: "http://localhost:5678/webhook/ded8979c-b426-4d64-b9d0-fdfe6b9f4ea5/chat", 
+            target: "#n8n-chat",
+            title: "Cyber Operations Assistant",
+            subtitle: "Red/Blue Team AI Agent"
+        });
+    </script>
+</body>
+</html>
